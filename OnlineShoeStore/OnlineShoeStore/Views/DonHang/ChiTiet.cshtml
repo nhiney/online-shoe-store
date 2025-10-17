@@ -1,0 +1,64 @@
+﻿@model OnlineShoeStore.Models.ViewModels.ChiTietDonHangViewModel
+@{
+    ViewBag.Title = "Đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="order-container">
+    <div class="order-success">
+        <i class="fas fa-check-circle"></i>
+        <h2>Đặt hàng thành công!</h2>
+        <div>
+            Cảm ơn bạn đã mua sắm tại <strong>MEODIGIAY</strong>
+        </div>
+    </div>
+
+    <div class="order-info">
+        <div><strong>Mã đơn hàng:</strong> <span>@Model.MaDonHang</span></div>
+        <div><strong>Khách hàng:</strong> <span>@Model.TenKhachHang</span></div>
+        <div><strong>SĐT:</strong> <span>@Model.SDT</span></div>
+        <div><strong>Địa chỉ:</strong> <span>@Model.DiaChi</span></div>
+        <div>
+            <strong>Phương thức thanh toán:</strong>
+            <span>
+                @(Model.PhuongThucThanhToan == "bank" ? "Chuyển khoản ngân hàng" : "Thanh toán khi nhận hàng (COD)")
+            </span>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table order-table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SanPhams)
+                {
+                    <tr>
+                        <td>@item.TenSanPham</td>
+                        <td>@string.Format("{0:N0}đ", item.Gia)</td>
+                        <td>@item.SoLuong</td>
+                        <td>@string.Format("{0:N0}đ", item.ThanhTien)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Tổng cộng:</td>
+                    <td class="order-total">@string.Format("{0:N0}đ", Model.TongTien)</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <a href="@Url.Action("Index","Home")" class="btn btn-home mt-3">
+            <i class="fas fa-home mr-2"></i>Về trang chủ
+        </a>
+    </div>
+</div>

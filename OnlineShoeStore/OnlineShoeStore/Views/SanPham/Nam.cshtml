@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WEBSITE_GIAY.Models.SanPham>
+@{
+    ViewBag.Title = "Giày Dép Nam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="featured-products py-5">
+    <div class="container">
+        <h2 class="text-center mb-4" style="color:#d4842c; font-weight: bold;">GIÀY DÉP NAM</h2>
+        <div class="row">
+            @foreach (var sp in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="product-card position-relative h-100 p-3 text-center border rounded shadow-sm bg-white">
+                        <img src="~/Content/images/products/@sp.HinhAnh" class="img-fluid mb-3" alt="@sp.TenSanPham">
+
+                        @if (sp.PhanTramGiam > 0)
+                        {
+                            <div class="product-discount position-absolute"
+                                 style="top:10px;left:10px;background:#f4a340;color:#fff;padding:4px 16px;border-radius:50px;">
+                                -@sp.PhanTramGiam%
+                            </div>
+                        }
+
+                        <div class="product-title mb-2">@sp.TenSanPham</div>
+
+                        <div class="product-prices mb-1">
+                            @if (sp.GiaGoc > sp.Gia)
+                            {
+                                <span class="text-muted" style="text-decoration:line-through;">
+                                    @sp.GiaGoc.ToString("N0") đ
+                                </span>
+                                <span class="font-weight-bold ml-2" style="font-size:1.2rem;">
+                                    @sp.Gia.ToString("N0") đ
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="font-weight-bold" style="font-size:1.2rem;">
+                                    @sp.Gia.ToString("N0") đ
+                                </span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
