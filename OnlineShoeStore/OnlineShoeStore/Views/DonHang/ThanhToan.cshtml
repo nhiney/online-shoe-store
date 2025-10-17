@@ -1,7 +1,125 @@
-﻿
-@{
-    ViewBag.Title = "ThanhToan";
+﻿@{
+    ViewBag.Title = "Đơn hàng - MEODIGIAY";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ThanhToan</h2>
+<section class="order-container my-5">
+    <div class="order-success text-center">
+        <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+        <h2 class="font-weight-bold text-danger">Đặt hàng thành công!</h2>
+        <p>Cảm ơn bạn đã mua sắm tại <strong>MEODIGIAY</strong></p>
+    </div>
 
+    <div class="order-info mb-4">
+        <p><strong>Mã đơn hàng:</strong> <span id="orderId">#123456</span></p>
+        <p><strong>Khách hàng:</strong> <span id="orderName"></span></p>
+        <p><strong>SĐT:</strong> <span id="orderPhone"></span></p>
+        <p><strong>Địa chỉ:</strong> <span id="orderAddress"></span></p>
+        <p><strong>Phương thức thanh toán:</strong> <span id="orderPayment"></span></p>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table order-table">
+            <thead class="bg-light">
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody id="orderProducts"></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Tổng cộng:</td>
+                    <td class="order-total text-danger font-weight-bold" id="orderTotal">0đ</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-danger px-4 py-2">
+            <i class="fas fa-home mr-2"></i>Về trang chủ
+        </a>
+    </div>
+</section>
+
+@section Styles {
+    <style>
+        .order-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+            padding: 32px 24px;
+        }
+
+        .order-success i {
+            color: #ff6b6b;
+        }
+
+        .order-total {
+            font-size: 1.3rem;
+        }
+
+        .table th {
+            background: #fff5f5;
+            color: #ff6b6b;
+        }
+
+        .btn-danger {
+            background-color: #ff6b6b;
+            border: none;
+        }
+
+            .btn-danger:hover {
+                background-color: #ff5252;
+            }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let name = sessionStorage.getItem('orderName') || 'Chưa có thông tin';
+            let phone = sessionStorage.getItem('orderPhone') || 'Chưa có thông tin';
+            let address = sessionStorage.getItem('orderAddress') || 'Chưa có thông tin';
+            let payment = sessionStorage.getItem('orderPayment') || 'cod';
+            let orderTime = sessionStorage.getItem('orderTime') || new Date().toISOString();
+            let orderId = new Date(orderTime).getTime().toString().slice(-6);
+
+            let html = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                html = '<tr><td colspan="4" class="text-center text-muted">Không có sản phẩm trong đơn hàng</td></tr>';
+            } else {
+                cart.forEach(item => {
+                    let price = parseInt((item.price || '0').replace(/\D/g, ''));
+                    let itemTotal = price * item.quantity;
+                    total += itemTotal;
+                    html += `<tr>
+                                <td>${item.title}</td>
+                                <td>${item.price}</td>
+                                <td>${item.quantity}</td>
+                                <td>${itemTotal.toLocaleString()}đ</td>
+                            </tr>`;
+                });
+            }
+
+            $('#orderProducts').html(html);
+            $('#orderTotal').text(total.toLocaleString() + 'đ');
+            $('#orderId').text('#' + orderId);
+            $('#orderName').text(name);
+            $('#orderPhone').text(phone);
+            $('#orderAddress').text(address);
+            $('#orderPayment').text(payment === 'bank' ? 'Chuyển khoản ngân hàng' : 'Thanh toán khi nhận hàng (COD)');
+
+            // Xóa giỏ hàng sau khi hiển thị
+            localStorage.removeItem('cart');
+        });
+    </script>
+}

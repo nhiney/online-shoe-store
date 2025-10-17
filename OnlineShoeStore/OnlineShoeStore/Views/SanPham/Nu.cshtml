@@ -1,8 +1,40 @@
-﻿@model IEnumerable<WEBSITE_GIAY.Models.SanPham>
+﻿@model IEnumerable<OnlineShoeStore.Models.SanPham>
 @{
     ViewBag.Title = "Giày Dép Nữ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    .product-card img {
+        height: 160px;
+        object-fit: contain;
+    }
+
+    .product-title {
+        font-size: 1rem;
+        min-height: 48px;
+    }
+
+    .product-discount {
+        z-index: 2;
+    }
+
+    .product-prices {
+        font-size: 1.1rem;
+    }
+
+    @@keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+</style>
 
 <section class="featured-products py-5">
     <div class="container">
@@ -12,20 +44,26 @@
             {
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                     <div class="product-card position-relative h-100 p-3 text-center border rounded shadow-sm bg-white">
-                        <img src="~/Content/images/products/@sp.HinhAnh"
-                             class="img-fluid mb-3"
-                             alt="@sp.TenSanPham" />
 
+                        <!-- Hình ảnh sản phẩm -->
+                        <img src="~/Content/images2/@sp.HinhAnh"
+                             alt="@sp.TenSanPham"
+                             class="img-fluid mb-3" />
+
+                        <!-- Hiển thị giảm giá nếu có -->
                         @if (sp.PhanTramGiam > 0)
                         {
                             <div class="product-discount position-absolute"
-                                 style="top:10px;left:10px;background:#f4a340;color:#fff;padding:4px 16px;border-radius:50px;">
+                                 style="top:10px;left:10px;background:#f4a340;color:#fff;
+                                        padding:4px 16px;border-radius:50px;">
                                 -@sp.PhanTramGiam%
                             </div>
                         }
 
+                        <!-- Tên sản phẩm -->
                         <div class="product-title mb-2">@sp.TenSanPham</div>
 
+                        <!-- Giá sản phẩm -->
                         <div class="product-prices mb-1">
                             @if (sp.GiaGoc > sp.Gia)
                             {
@@ -44,9 +82,11 @@
                             }
                         </div>
 
+                        <!-- Nút thêm vào giỏ -->
                         <div class="mt-2">
                             @Html.ActionLink("Thêm vào giỏ", "Them", "GioHang", new { id = sp.Id }, new { @class = "btn btn-primary btn-sm" })
                         </div>
+
                     </div>
                 </div>
             }

@@ -1,47 +1,90 @@
-<header>
+﻿<header class="bg-white py-2 shadow-sm sticky-top">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <a class="navbar-brand font-weight-bold" href="@Url.Action("Index","Home")">MEODIGIAY</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarNav" aria-controls="navbarNav"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="@Url.Action("Index","Home")">Trang Ch?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Products","Home")">S?n Ph?m</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Danh M?c
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Gi�y Nam</a>
-                            <a class="dropdown-item" href="#">Gi�y N?</a>
-                            <a class="dropdown-item" href="#">Khuy?n M�i</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Contact","Home")">Li�n H?</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="btn btn-warning mr-3" href="@Url.Action("Login","Account")">??ng Nh?p</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-dark" href="@Url.Action("Index","Cart")">
-                            <i class="fas fa-shopping-cart"></i> Gi? H�ng
-                        </a>
-                    </li>
-                </ul>
+        <div class="row align-items-center">
+            <!-- Logo -->
+            <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-start align-items-center mb-2 mb-md-0">
+                <a href="@Url.Action("Index", "Home")" class="d-flex align-items-center text-decoration-none">
+                    <img src="~/Content/images2/logo/logo.png" alt="logo"
+                         style="width: 2.8rem; height: 2.8rem; object-fit: contain;" class="mr-2" />
+                    <span class="h4 mb-0 font-weight-bold text-primary" style="letter-spacing:1px;">
+                        MEODIGIAY
+                    </span>
+                </a>
             </div>
-        </nav>
+
+            <!-- Navigation -->
+            <div class="col-12 col-md-6">
+                <nav>
+                    <ul class="nav justify-content-center align-items-center mb-0">
+                        <li class="nav-item dropdown mx-2">
+                            <a class="nav-link text-dark font-weight-bold dropdown-toggle"
+                               href="#" id="navbarDropdownNam" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Giày nam
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNam">
+                                <a class="dropdown-item" href="@Url.Action("Nam", "SanPham")">Tất cả giày nam</a>
+                                <a class="dropdown-item" href="#">Dép Kẹp - Dép Xỏ Ngón</a>
+                                <a class="dropdown-item" href="#">Sneaker</a>
+                                <a class="dropdown-item" href="#">Sandal</a>
+                                <a class="dropdown-item" href="#">Giày Lười</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown mx-2">
+                            <a class="nav-link text-dark font-weight-bold dropdown-toggle"
+                               href="#" id="navbarDropdownNu" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Giày nữ
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNu">
+                                <a class="dropdown-item" href="@Url.Action("Nu", "SanPham")">Tất cả giày nữ</a>
+                                <a class="dropdown-item" href="#">Sneakers</a>
+                                <a class="dropdown-item" href="#">Dép Lê - Quai Ngang</a>
+                                <a class="dropdown-item" href="#">Dép Kẹp</a>
+                                <a class="dropdown-item" href="#">Sandal</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown mx-2">
+                            <a class="nav-link text-dark font-weight-bold dropdown-toggle"
+                               href="#" id="navbarDropdownTreEm" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Giày trẻ em
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownTreEm">
+                                <a class="dropdown-item" href="@Url.Action("TreEm", "SanPham")">Tất cả giày trẻ em</a>
+                                <a class="dropdown-item" href="#">Sneakers</a>
+                                <a class="dropdown-item" href="#">Dép Lê</a>
+                                <a class="dropdown-item" href="#">Dép Kẹp</a>
+                                <a class="dropdown-item" href="#">Sandal</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Search + Buttons -->
+            <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center mt-2 mt-md-0">
+                <div class="search-container position-relative mr-2" style="min-width: 160px;">
+                    <input type="search" class="form-control" placeholder="Tìm kiếm sản phẩm..." />
+                </div>
+
+                <a href="@Url.Action("GioHang", "Cart")"
+                   class="btn btn-light border d-flex align-items-center justify-content-center mx-1"
+                   style="height:38px;width:38px;position:relative;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount"></span>
+                </a>
+
+                <!-- Login & Signup (modal) -->
+                <a href="@Url.Action("DangNhap", "Account")" class="btn btn-outline-primary px-3 mx-1"
+                   style="height:38px;min-width:70px;">Login</a>
+                <a href="@Url.Action("DangKy", "Account")" class="btn btn-primary px-3 mx-1"
+                   style="height:38px;min-width:70px;">Signup</a>
+
+
+            </div>
+        </div>
     </div>
 </header>

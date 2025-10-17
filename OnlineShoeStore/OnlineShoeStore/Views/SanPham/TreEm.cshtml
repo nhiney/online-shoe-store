@@ -11,13 +11,17 @@
             @foreach (var sp in Model)
             {
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <div class="product-card position-relative h-100 p-3 text-center border rounded shadow-sm bg-white" data-category="@sp.Loai">
-                        <img src="~/Content/images/products/@sp.HinhAnh" class="img-fluid mb-3" alt="@sp.TenSanPham" />
+                    <div class="product-card position-relative h-100 p-3 text-center border rounded shadow-sm bg-white">
+
+                        <img src="~/Content/images2/@sp.HinhAnh"
+                             alt="@sp.TenSanPham"
+                             class="img-fluid mb-3" />
 
                         @if (sp.PhanTramGiam > 0)
                         {
                             <div class="product-discount position-absolute"
-                                 style="top:10px;left:10px;background:#f4a340;color:#fff;padding:4px 16px;border-radius:50px;">
+                                 style="top:10px;left:10px;background:#f4a340;color:#fff;
+                                        padding:4px 16px;border-radius:50px;">
                                 -@sp.PhanTramGiam%
                             </div>
                         }
@@ -28,22 +32,22 @@
                             @if (sp.GiaGoc > sp.Gia)
                             {
                                 <span class="text-muted" style="text-decoration:line-through;">
-                                    @sp.GiaGoc.ToString("N0") đ
+                                    @sp.GiaGoc.ToString("N0")đ
                                 </span>
                                 <span class="font-weight-bold ml-2" style="font-size:1.2rem;">
-                                    @sp.Gia.ToString("N0") đ
+                                    @sp.Gia.ToString("N0")đ
                                 </span>
                             }
                             else
                             {
                                 <span class="font-weight-bold" style="font-size:1.2rem;">
-                                    @sp.Gia.ToString("N0") đ
+                                    @sp.Gia.ToString("N0")đ
                                 </span>
                             }
                         </div>
 
                         <div class="mt-2">
-                            @Html.ActionLink("Thêm vào giỏ", "Them", "GioHang", new { id = sp.Id }, new { @class = "btn btn-primary btn-sm add-to-cart" })
+                            @Html.ActionLink("Thêm vào giỏ", "Them", "GioHang", new { id = sp.Id }, new { @class = "btn btn-primary btn-sm" })
                         </div>
                     </div>
                 </div>
@@ -52,10 +56,22 @@
     </div>
 </section>
 
-<a id="cartIcon"
-   class="btn btn-light border mx-1 d-flex align-items-center justify-content-center"
-   style="height:32px;width:32px;position:fixed;bottom:20px;right:20px;"
-   href="@Url.Action("Index", "GioHang")">
-    <i class="fas fa-shopping-cart"></i>
-    <span id="cartCount"></span>
-</a>
+<style>
+    .product-card img {
+        height: 160px;
+        object-fit: contain;
+    }
+
+    .product-title {
+        font-size: 1rem;
+        min-height: 48px;
+    }
+
+    .product-discount {
+        z-index: 2;
+    }
+
+    .product-prices {
+        font-size: 1.1rem;
+    }
+</style>

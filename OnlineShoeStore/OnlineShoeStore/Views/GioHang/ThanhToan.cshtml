@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="checkout-container my-5">
+    <div class="container">
+        <h2 class="checkout-title text-center">
+            <i class="fas fa-credit-card mr-2"></i> Thanh toán
+        </h2>
+
+        <form id="checkoutForm">
+            <div class="row">
+                <!-- Cột trái: Thông tin khách hàng -->
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label class="form-label">Họ và tên *</label>
+                        <input type="text" class="form-control" id="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Số điện thoại *</label>
+                        <input type="tel" class="form-control" id="customerPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="customerEmail">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Địa chỉ nhận hàng *</label>
+                        <input type="text" class="form-control" id="customerAddress" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Ghi chú</label>
+                        <textarea class="form-control" id="customerNote" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phương thức thanh toán *</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="payment" id="cod" checked>
+                            <label class="form-check-label" for="cod">Thanh toán khi nhận hàng (COD)</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="payment" id="bank">
+                            <label class="form-check-label" for="bank">Chuyển khoản ngân hàng</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột phải: Tóm tắt đơn hàng -->
+                <div class="col-md-5">
+                    <div class="order-summary">
+                        <h5>Đơn hàng của bạn</h5>
+                        <div id="orderItems"></div>
+                        <div class="row mt-3">
+                            <div class="col-6">Tạm tính:</div>
+                            <div class="col-6 text-right" id="orderSubtotal">0đ</div>
+                        </div>
+                        <div class="row total">
+                            <div class="col-6">Tổng:</div>
+                            <div class="col-6 text-right" id="orderTotal">0đ</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-confirm w-100 mt-4">
+                        Xác nhận đặt hàng
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // ✅ Hiển thị đơn hàng từ localStorage
+        function renderOrderSummary() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let html = '';
+            let subtotal = 0;
+            cart.forEach(item => {
+                let price = parseInt((item.price || '0').replace(/\D/g, ''));
+                let itemTotal = price * item.quantity;
+                subtotal += itemTotal;
+                html += `<div class='row'>
+                            <div class='col-7'>${item.title} <span class='text-muted'>(x${item.quantity})</span></div>
+                            <div class='col-5 text-right'>${itemTotal.toLocaleString()}đ</div>
+                        </div>`;
+            });
+            document.getElementById('orderItems').innerHTML = html;
+            document.getElementById('orderSubtotal').textContent = subtotal.toLocaleString() + 'đ';
+            document.getElementById('orderTotal').textContent = subtotal.toLocaleString() + 'đ';
+        }
+
+        // ✅ Khi tải trang
+        document.addEventListener('DOMContentLoaded', function () {
+            renderOrderSummary();
+
+            document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                sessionStorage.setItem('orderName', document.getElementById('customerName').value);
+                sessionStorage.setItem('orderPhone', document.getElementById('customerPhone').value);
+                sessionStorage.setItem('orderEmail', document.getElementById('customerEmail').value);
+                sessionStorage.setItem('orderAddress', document.getElementById('customerAddress').value);
+                sessionStorage.setItem('orderNote', document.getElementById('customerNote').value);
+                let paymentMethod = document.querySelector('input[name="payment"]:checked').id;
+                sessionStorage.setItem('orderPayment', paymentMethod);
+                sessionStorage.setItem('orderTime', new Date().toISOString());
+                window.location.href = '@Url.Action("DonHang", "GioHang")';
+            });
+        });
+    </script>
+}

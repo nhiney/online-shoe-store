@@ -1,60 +1,81 @@
-﻿@{
-    ViewBag.Title = "Giỏ hàng - MEODIGIAY";
-    Layout = "~/Views/Shared/_Layout.cshtml"; <!-- dùng layout chung -->
+﻿@model List<OnlineShoeStore.Models.GioHangItem>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="cart-main">
     <div class="cart-title">Giỏ hàng</div>
-    <div class="row">
-        <!-- Left: Cart Items -->
-        <div class="col-lg-7 mb-4 mb-lg-0">
-            <div id="cartContent"></div>
-            <div class="cart-actions d-flex flex-wrap gap-2">
-                <a href="@Url.Action("Index", "Home")" class="btn btn-outline-dark mr-3 mb-2">
-                    <i class="fas fa-arrow-left mr-2"></i>TIẾP TỤC XEM SẢN PHẨM
-                </a>
-                <button class="btn btn-dark mb-2" id="updateCartBtn">CẬP NHẬT GIỎ HÀNG</button>
-            </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="cart-empty">
+            <img src="~/Content/images/empty-cart.png" alt="Empty Cart" />
+            <p>Giỏ hàng của bạn đang trống!</p>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">
+                Tiếp tục mua sắm
+            </a>
         </div>
-        <!-- Right: Cart Summary -->
-        <div class="col-lg-5">
-            <div class="cart-summary-box">
-                <div class="cart-summary-title">CỘNG GIỎ HÀNG</div>
-                <div class="cart-summary-row"><span>Tạm tính</span><span id="cartSubtotal">0đ</span></div>
-                <div class="cart-summary-row total"><span>Tổng</span><span id="cartTotal">0đ</span></div>
-                <button class="btn btn-checkout">TIẾN HÀNH THANH TOÁN</button>
-                <div class="cart-coupon">
-                    <div class="mb-2" style="font-weight:500;">
-                        <i class="fas fa-tag mr-2"></i>Mã ưu đãi
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <table class="table cart-table">
+                    <thead>
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><img src="~/Content/images2/@item.HinhAnh" class="cart-img" /></td>
+                                <td>@item.TenSanPham</td>
+                                <td>@item.Gia.ToString("N0") đ</td>
+                                <td>
+                                    <form action="@Url.Action("CapNhat", "GioHang")" method="post" style="display:flex;justify-content:center;align-items:center;">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <input type="number" name="soLuong" value="@item.SoLuong" min="1" style="width:60px;text-align:center;" />
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary ml-2">Cập nhật</button>
+                                    </form>
+                                </td>
+                                <td>@item.ThanhTien.ToString("N0") đ</td>
+                                <td>
+                                    <a href="@Url.Action("Xoa", "GioHang", new { id = item.Id })" class="cart-remove">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <a href="@Url.Action("Index", "Home")" class="btn btn-outline-dark">
+                    <i class="fas fa-arrow-left mr-2"></i> TIẾP TỤC MUA HÀNG
+                </a>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="cart-summary-box">
+                    <div class="cart-summary-title">CỘNG GIỎ HÀNG</div>
+                    <div class="cart-summary-row">
+                        <span>Tạm tính</span>
+                        <span>@Model.Sum(x => x.ThanhTien).ToString("N0") đ</span>
                     </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Mã ưu đãi" id="couponInput">
-                        <div class="input-group-append">
-                            <button class="btn" id="applyCouponBtn">Áp dụng</button>
-                        </div>
+                    <div class="cart-summary-row total">
+                        <span>Tổng</span>
+                        <span>@Model.Sum(x => x.ThanhTien).ToString("N0") đ</span>
                     </div>
+                    <button class="btn btn-checkout">TIẾN HÀNH THANH TOÁN</button>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Thông tin dịch vụ -->
-<div class="cart-service mt-5 mb-4">
-    <div class="cart-service-item">
-        <i class="fas fa-shipping-fast"></i>
-        <span>Ship code toàn quốc</span>
-    </div>
-    <div class="cart-service-item">
-        <i class="fas fa-box-open"></i>
-        <span>Kiểm tra hàng trước khi thanh toán</span>
-    </div>
-    <div class="cart-service-item">
-        <i class="fas fa-sync-alt"></i>
-        <span>Đổi trả trong 7 ngày</span>
-    </div>
-    <div class="cart-service-item">
-        <i class="fas fa-credit-card"></i>
-        <span>Hình thức thanh toán</span>
-    </div>
+    }
 </div>
