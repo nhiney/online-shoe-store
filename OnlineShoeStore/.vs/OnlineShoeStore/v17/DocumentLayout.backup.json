@@ -1,10 +1,24 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\TaiLieuDaiHoc\\Nam3\\Nam3-HKI\\LT WEB\\Project\\OnlineShoeStore\\",
+  "WorkspaceRootPath": "C:\\Users\\PC\\online-shoe-store\\OnlineShoeStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}|OnlineShoeStore\\OnlineShoeStore.csproj|d:\\tailieudaihoc\\nam3\\nam3-hki\\lt web\\project\\onlineshoestore\\onlineshoestore\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\AppData\\Local\\Temp\\g31ywys3..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}|OnlineShoeStore\\OnlineShoeStore.csproj|c:\\users\\pc\\online-shoe-store\\onlineshoestore\\onlineshoestore\\controllers\\admin\\danhmucsanphamfaultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}|OnlineShoeStore\\OnlineShoeStore.csproj|solutionrelative:onlineshoestore\\controllers\\admin\\danhmucsanphamfaultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}|OnlineShoeStore\\OnlineShoeStore.csproj|c:\\users\\pc\\online-shoe-store\\onlineshoestore\\onlineshoestore\\models\\danhmucsanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}|OnlineShoeStore\\OnlineShoeStore.csproj|solutionrelative:onlineshoestore\\models\\danhmucsanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}|OnlineShoeStore\\OnlineShoeStore.csproj|c:\\users\\pc\\online-shoe-store\\onlineshoestore\\onlineshoestore\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}|OnlineShoeStore\\OnlineShoeStore.csproj|solutionrelative:onlineshoestore\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\AppData\\Local\\Temp\\g31ywys3..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +28,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -23,10 +37,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -45,16 +55,49 @@
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SQLQuery1.sql ",
+              "DocumentMoniker": "C:\\Users\\PC\\AppData\\Local\\Temp\\g31ywys3..sql",
+              "RelativeDocumentMoniker": "..\\..\\AppData\\Local\\Temp\\g31ywys3..sql",
+              "ToolTip": "SQLQuery1.sql *",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-10-17T10:58:57.531Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "DanhMucSanPhamfaultController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\online-shoe-store\\OnlineShoeStore\\OnlineShoeStore\\Controllers\\Admin\\DanhMucSanPhamfaultController.cs",
+              "RelativeDocumentMoniker": "OnlineShoeStore\\Controllers\\Admin\\DanhMucSanPhamfaultController.cs",
+              "ToolTip": "C:\\Users\\PC\\online-shoe-store\\OnlineShoeStore\\OnlineShoeStore\\Controllers\\Admin\\DanhMucSanPhamfaultController.cs",
+              "RelativeToolTip": "OnlineShoeStore\\Controllers\\Admin\\DanhMucSanPhamfaultController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T10:51:45.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DanhMucSanPham.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\online-shoe-store\\OnlineShoeStore\\OnlineShoeStore\\Models\\DanhMucSanPham.cs",
+              "RelativeDocumentMoniker": "OnlineShoeStore\\Models\\DanhMucSanPham.cs",
+              "ToolTip": "C:\\Users\\PC\\online-shoe-store\\OnlineShoeStore\\OnlineShoeStore\\Models\\DanhMucSanPham.cs",
+              "RelativeToolTip": "OnlineShoeStore\\Models\\DanhMucSanPham.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T10:51:19.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "DonHangController.cs",
-              "DocumentMoniker": "D:\\TaiLieuDaiHoc\\Nam3\\Nam3-HKI\\LT WEB\\Project\\OnlineShoeStore\\OnlineShoeStore\\Controllers\\DonHangController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\online-shoe-store\\OnlineShoeStore\\OnlineShoeStore\\Controllers\\DonHangController.cs",
               "RelativeDocumentMoniker": "OnlineShoeStore\\Controllers\\DonHangController.cs",
-              "ToolTip": "D:\\TaiLieuDaiHoc\\Nam3\\Nam3-HKI\\LT WEB\\Project\\OnlineShoeStore\\OnlineShoeStore\\Controllers\\DonHangController.cs",
+              "ToolTip": "C:\\Users\\PC\\online-shoe-store\\OnlineShoeStore\\OnlineShoeStore\\Controllers\\DonHangController.cs",
               "RelativeToolTip": "OnlineShoeStore\\Controllers\\DonHangController.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
