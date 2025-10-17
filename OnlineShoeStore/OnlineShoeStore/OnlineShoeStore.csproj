@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Admin\DanhMucSanPhamfaultController.cs" />
     <Compile Include="Controllers\Admin\QuanLyDonHangController.cs" />
     <Compile Include="Controllers\Admin\QuanLyNguoiDungController.cs" />
     <Compile Include="Controllers\Admin\QuanLySanPhamController.cs" />
@@ -132,6 +133,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChiTietDonHang.cs" />
+    <Compile Include="Models\DanhMucSanPham.cs" />
     <Compile Include="Models\DonHang.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\NguoiDung.cs" />
@@ -281,6 +283,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\fonts\" />
+    <Folder Include="Views\DanhMucSanPhamfault\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
