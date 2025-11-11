@@ -1,106 +1,518 @@
-﻿@{
-    Layout = null;
-}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - MEODIGIAY</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="~/Content/Site.css" />
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+        }
+
+        header {
+            background: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-text {
+            letter-spacing: 2px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 15px !important;
+            color: #333 !important;
+            font-weight: 600;
+        }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 2px;
+                background: var(--primary-color);
+                transition: width 0.3s;
+            }
+
+            .nav-link:hover::after {
+                width: 100%;
+            }
+
+        .btn-warning {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+            .btn-warning:hover {
+                background: #ff5252;
+                border-color: #ff5252;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(255,107,107,0.2);
+            }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .dropdown-item {
+            padding: 8px 20px;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+            .dropdown-item:hover {
+                background: var(--primary-color);
+                color: white;
+                border-radius: 5px;
+            }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        #cartCount {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        #searchResults {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .search-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+            .search-item:hover {
+                background: #f8f9fa;
+            }
+
+        #notificationContainer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .custom-toast {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease-out;
+        }
+
+            .custom-toast.show {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        .hove {
+            transition: transform 0.3s ease;
+        }
+
+            .hove:hover {
+                transform: scale(1.1);
+            }
+
+        .image-border {
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+            .image-border:hover {
+                transform: translateY(-10px);
+            }
+
+        .banner-high {
+            height: 70vh;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+            .product-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            }
+
+            .product-card img {
+                height: 160px;
+                object-fit: contain;
+                transition: transform 0.5s ease;
+            }
+
+            .product-card:hover img {
+                transform: scale(1.1);
+            }
+
+        .product-discount {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #f4a340;
+            color: #fff;
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            animation: bounce 1s infinite;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            min-height: 48px;
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover .product-title {
+            color: var(--primary-color);
+        }
+
+        .product-prices .text-muted {
+            text-decoration: line-through;
+            position: relative;
+        }
+
+            .product-prices .text-muted::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: #dc3545;
+                transform: rotate(-5deg);
+            }
+
+        footer {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-section h5 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-links a {
+            color: #dfe6e9;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+            .footer-links a:hover {
+                color: var(--primary-color);
+            }
+
+        .social-links a {
+            color: #fff;
+            margin-right: 15px;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+            .social-links a:hover {
+                color: var(--primary-color);
+            }
+
+        <text >
+        @@keyframes bounce {
+            0%, 100%
+
+        {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-5px);
+        }
+
+        }
+
+        @@keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        </text >
+    </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <div id="notificationContainer"></div>
+
+    <!-- HEADER -->
     <header class="bg-white py-2 shadow-sm sticky-top">
         <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <!-- Logo -->
-                <div class="col-12 col-md-3 d-flex align-items-center justify-content-md-start justify-content-center mb-2 mb-md-0">
+            <div class="row align-items-center">
+                <div class="col-6 col-md-3 d-flex align-items-center">
                     <a href="@Url.Action("Index", "Home")" class="d-flex align-items-center text-decoration-none">
-                        <img src="~/Content/images2/logo/logo.png" alt="logo" style="width: 3rem; height: 3rem; object-fit: contain;" class="mr-2" />
-                        <span class="h4 mb-0 font-weight-bold text-primary" style="letter-spacing:2px;">MEODIGIAY</span>
+                        <img src="~/source/images/logo/logo.png" alt="MEODIGIAY" style="width: 3rem; height: 3rem; object-fit: contain;" class="mr-2">
+                        <span class="h4 mb-0 logo-text">MEODIGIAY</span>
                     </a>
                 </div>
-
-                <!-- Navigation -->
                 <div class="d-none d-md-block col-md-6">
-                    <nav>
-                        <ul class="nav justify-content-center">
-                            <li class="nav-item dropdown px-2">
-                                <a class="nav-link text-dark font-weight-bold dropdown-toggle" href="#" id="navbarDropdownNam" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Giày nam
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownNam">
-                                    <a class="dropdown-item" href="@Url.Action("Nam", "SanPham")">Tất cả giày nam</a>
-                                    <a class="dropdown-item" href="#">Dép Kẹp - Dép Xỏ Ngón</a>
-                                    <a class="dropdown-item" href="#">Sneaker</a>
-                                    <a class="dropdown-item" href="#">Sandal</a>
-                                    <a class="dropdown-item" href="#">Giày Lười</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown px-2">
-                                <a class="nav-link text-dark font-weight-bold dropdown-toggle" href="#" id="navbarDropdownNu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Giày nữ
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownNu">
-                                    <a class="dropdown-item" href="@Url.Action("Nu", "SanPham")">Tất cả giày nữ</a>
-                                    <a class="dropdown-item" href="#">Sneakers</a>
-                                    <a class="dropdown-item" href="#">Dép Lê - Quai Ngang</a>
-                                    <a class="dropdown-item" href="#">Dép Kẹp</a>
-                                    <a class="dropdown-item" href="#">Sandal</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown px-2">
-                                <a class="nav-link text-dark font-weight-bold dropdown-toggle" href="#" id="navbarDropdownTreEm" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Giày trẻ em
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownTreEm">
-                                    <a class="dropdown-item" href="@Url.Action("TreEm", "SanPham")">Tất cả giày trẻ em</a>
-                                    <a class="dropdown-item" href="#">Sneakers</a>
-                                    <a class="dropdown-item" href="#">Dép Lê</a>
-                                    <a class="dropdown-item" href="#">Dép Kẹp</a>
-                                    <a class="dropdown-item" href="#">Sandal</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNam" role="button" data-toggle="dropdown">Giày nam</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNam">
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "dep-kep" })">Dép Kẹp</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "sneaker" })">Sneaker</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "sandal" })">Sandal</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "giay-luoi" })">Giày Lười</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNu" role="button" data-toggle="dropdown">Giày nữ</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNu">
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "sneakers" })">Sneakers</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "dep-le" })">Dép Lê</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "dep-kep" })">Dép Kẹp</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "sandal" })">Sandal</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTreEm" role="button" data-toggle="dropdown">Giày trẻ em</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownTreEm">
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "sneakers" })">Sneakers</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "dep-le" })">Dép Lê</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "dep-kep" })">Dép Kẹp</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Product", new { category = "sandal" })">Sandal</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-
-                <!-- Search + Buttons -->
-                <div class="col-12 col-md-3 d-flex justify-content-md-end justify-content-center align-items-center gap-2 mt-2 mt-md-0">
-                    <div class="search-container flex-grow-1 mr-2" style="min-width: 180px;">
-                        <input type="search" class="form-control" placeholder="Tìm kiếm sản phẩm..." />
+                <div class="col-6 col-md-3 d-flex justify-content-end align-items-center">
+                    <div class="search-container mr-2">
+                        <input type="search" class="form-control d-none d-md-block" id="searchInput" placeholder="Tìm kiếm..." style="width: 200px;">
+                        <div id="searchResults"></div>
                     </div>
-
-                    <a href="@Url.Action("GioHang", "Cart")" class="btn btn-light border d-flex align-items-center justify-content-center mx-1" style="height:38px;width:38px;position:relative;">
+                    <div id="welcomeMessage" class="mr-2 d-none"><span class="text-primary font-weight-bold">Xin chào!</span></div>
+                    <button type="button" class="btn btn-outline-primary btn-sm mr-1" id="btnLogin"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <button type="button" class="btn btn-primary btn-sm mr-1" id="btnSignin"><i class="fas fa-user-plus"></i> Signin</button>
+                    <a id="cartIcon" href="@Url.Action("Index", "Cart")" class="btn btn-light border d-flex align-items-center justify-content-center" style="height:32px;width:32px;position:relative;">
                         <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="d-none">0</span>
                     </a>
-
-                    <button type="button" class="btn btn-outline-primary px-3 mx-1" style="height:38px;min-width:70px;" data-toggle="modal" data-target="#loginModal">Login</button>
-                    <a href="@Url.Action("DangKy", "Account")" class="btn btn-primary px-3 mx-1" style="height:38px;min-width:70px;">Signup</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main body -->
-    <div class="container body-content mt-4">
+    <!-- CAROUSEL -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100 banner-high" src="~/source/images/banner/banner.jpg" alt="Slide 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Bộ Sưu Tập Mới Nhất</h2>
+                    <p>Khám phá các mẫu giày thời trang mới nhất với ưu đãi đặc biệt</p>
+                    <a href="#" class="btn btn-warning btn-lg">Mua Ngay</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100 banner-high" src="~/source/images/banner/banner1.jpg" alt="Slide 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Giảm Giá Mùa Hè</h2>
+                    <p>Ưu đãi lên đến 50% cho các sản phẩm hot</p>
+                    <a href="#" class="btn btn-warning btn-lg">Xem Ngay</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100 banner-high" src="~/source/images/banner/banner2.jpg" alt="Slide 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Thương Hiệu Nổi Tiếng</h2>
+                    <p>Các sản phẩm chính hãng từ các thương hiệu hàng đầu</p>
+                    <a href="#" class="btn btn-warning btn-lg">Khám Phá</a>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+
+    <!-- LOGO THƯƠNG HIỆU -->
+    <div class="navbar navbar-light mb-5 p-3" style="background-color: white;">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="~/source/images/logo/adida.jpg" alt="Adidas" width="100" class="hove"></a>
+            <a class="navbar-brand" href="#"><img src="~/source/images/logo/converse.jpg" alt="Converse" width="100" class="hove"></a>
+            <a class="navbar-brand" href="#"><img src="~/source/images/logo/nike.jpg" alt="Nike" width="100" class="hove"></a>
+            <a class="navbar-brand" href="#"><img src="~/source/images/logo/plus.jpg" alt="Plus" width="100" class="hove"></a>
+            <a class="navbar-brand" href="#"><img src="~/source/images/logo/cros.jpg" alt="Cros" width="100" class="hove"></a>
+            <a class="navbar-brand" href="#"><img src="~/source/images/logo/fila.jpg" alt="Fila" width="100" class="hove"></a>
+        </div>
+    </div>
+
+    <!-- GIỚI THIỆU THƯƠNG HIỆU -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6">
+                    <h2>NIKE</h2>
+                    <p>Thiết kế thể thao hiện đại, nổi bật với sự kết hợp của phong cách và tính tiện dụng...</p>
+                    <a href="#" class="btn btn-warning">Tới Cửa Hàng</a>
+                </div>
+                <div class="col-md-6">
+                    <img src="~/source/images/nike2.jpg" alt="NIKE" class="img-fluid image-border">
+                </div>
+            </div>
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6 order-md-2">
+                    <h2>FILA</h2>
+                    <p>Giày có thiết kế dáng dày (chunky), tạo cảm giác mạnh mẽ và chắc chắn...</p>
+                    <a href="#" class="btn btn-warning">Tới Cửa Hàng</a>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <img src="~/source/images/fila1.jpg" alt="FILA" class="img-fluid image-border">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2>ADIDAS CAMPUS</h2>
+                    <p>Một thiết kế mang phong cách cổ điển và biểu tượng của thương hiệu Adidas...</p>
+                    <a href="#" class="btn btn-warning">Tới Cửa Hàng</a>
+                </div>
+                <div class="col-md-6">
+                    <img src="~/source/images/adidas1.jpg" alt="ADIDAS" class="img-fluid image-border">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT (chỉ hiển thị nội dung từ View) -->
+    <div class="container body-content">
         @RenderBody()
     </div>
 
-    <!-- Footer -->
-    @Html.Partial("_Footer")
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-section">
+                    <h5>MEODIGIAY</h5>
+                    <p>Chuyên cung cấp giày dép chính hãng, chất lượng cao với giá tốt nhất.</p>
+                </div>
+                <div class="col-md-4 footer-section">
+                    <h5>Liên kết nhanh</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li>@Html.ActionLink("Trang chủ", "Index", "Home", null, new { @class = "text-light" })</li>
+                        <li>@Html.ActionLink("Sản phẩm", "Index", "Product", null, new { @class = "text-light" })</li>
+                        <li>@Html.ActionLink("Giới thiệu", "About", "Home", null, new { @class = "text-light" })</li>
+                        <li>@Html.ActionLink("Liên hệ", "Contact", "Home", null, new { @class = "text-light" })</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-section">
+                    <h5>Theo dõi chúng tôi</h5>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <p class="text-center mb-0">&copy; @DateTime.Now.Year - MEODIGIAY. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <!-- Modal đăng nhập -->
-    @Html.Partial("_Login")
-
-    @Html.Partial("_Signin")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
