@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WebBanGIay.Models.NHACUNGCAP>
+
+<ul class="nav justify-content-center">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-uppercase font-weight-bold text-dark"
+                   href="#" data-toggle="dropdown">
+                    @item.TENNHACUNGCAP
+                </a>
+            </li>
+        }
+    }
+    else
+    {
+        <li class="nav-item"><span class="text-muted">Không có thương hiệu</span></li>
+    }
+</ul>
