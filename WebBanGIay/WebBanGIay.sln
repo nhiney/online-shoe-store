@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.36422.26
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShoeStore", "OnlineShoeStore\OnlineShoeStore.csproj", "{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBanGIay", "..\WebBanGIay\WebBanGIay\WebBanGIay.csproj", "{5F43D792-12AA-4F11-A578-E420E7EEAE3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBanGIay", "WebBanGIay\WebBanGIay.csproj", "{5F43D792-12AA-4F11-A578-E420E7EEAE3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F43D792-12AA-4F11-A578-E420E7EEAE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F43D792-12AA-4F11-A578-E420E7EEAE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F43D792-12AA-4F11-A578-E420E7EEAE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3C56C357-942D-4261-80CC-1362C14291F3}
+		SolutionGuid = {6A230C12-00F1-4106-AABA-F01446C8326B}
 	EndGlobalSection
 EndGlobal
