@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShoeStore", "OnlineShoeStore\OnlineShoeStore.csproj", "{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBanGIay", "..\..\..\..\..\Downloads\WebBanGIay (moi)\WebBanGIay\WebBanGIay\WebBanGIay.csproj", "{5F43D792-12AA-4F11-A578-E420E7EEAE3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F9307DD-3645-4ABA-BDAC-6F3265E65F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F43D792-12AA-4F11-A578-E420E7EEAE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F43D792-12AA-4F11-A578-E420E7EEAE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F43D792-12AA-4F11-A578-E420E7EEAE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F43D792-12AA-4F11-A578-E420E7EEAE3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

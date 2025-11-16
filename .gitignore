@@ -1,6 +1,17 @@
-bin/
-obj/
-.vs/
-# Thêm TẤT CẢ các file chưa được theo dõi và các file đã sửa
-git add .
-git commit -m "Initial commit"
+# Loại bỏ các file do Visual Studio và Windows tạo ra
+*.user
+*.suo
+*.sln.docstates
+*.vs/
+*~
+*.tmp
+
+# Quy tắc quan trọng nhất: Bỏ qua thư viện tải về
+packages/
+
+# Bỏ qua các thư mục build (rất quan trọng)
+[Bb]in/
+[Oo]bj/
+
+# Bỏ qua các file cấu hình tạm của user
+*.config.user
